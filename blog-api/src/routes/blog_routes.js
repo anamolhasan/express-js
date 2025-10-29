@@ -54,5 +54,39 @@ router.post('/add-post', (req, res) => {
     })
 })
 
+// update a blog by id
+router.put('/update-post/:id', (req, res) => {
+    const {id} = req.params
+    const {title, body} = req.body
+
+    const blog = blogs.find((blog) => blog.id === parseInt(id))
+
+    if(!blog) return res.status(404).json({message:'No blog found'})
+
+        blog.title = title || blog.title;
+        blog.body = body
+        res.status(200).json({
+            message: 'Blog updated successfully!',
+            blog
+        })
+})
+
+// deleted a blog by id
+router.delete('/deleted-post/:id', (req, res) => {
+    const {id} = req.params
+
+    const blogIndex = blogs.findIndex((blog) => blog.id === parseInt(id))
+    
+    if(!blogIndex === -1) return res.status(404).json({message:'Blog not found!'})
+
+        blogs.splice(blogIndex, 1)
+        res.status(200).json({
+            message:'Blog deleted successfully'
+        })
+})
+
+
+
+
 
 module.exports = router
