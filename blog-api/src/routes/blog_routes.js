@@ -30,8 +30,20 @@ const blogs = [
   },
 ]
 
+// get all blogs
 router.get('/', (req, res) => {
     res.send(blogs)
+})
+
+// get a single blog by id
+router.get('/:id', (req, res) => {
+    const {id} = req.params
+    const UserBlog = blogs.find(blog => blog.id === parseInt(id))
+
+    if(!UserBlog){
+        res.send('No blog found')
+    }
+  res.send(UserBlog)
 })
 
 
