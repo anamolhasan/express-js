@@ -55,6 +55,28 @@ app.get('/search', (req, res) => {
     res.send(`Search for ${category} on product page`)
 })
 
+
+// single parameter
+app.get('/users/:id', (req, res) => {
+    const userId = req.params.id
+    res.send(`User ID: ${userId}`)
+})
+// Multiple parameters
+app.get('/users/:userId/posts/:postId', (req, res) => {
+    const {userId, postId} = req.params
+    res.json({userId, postId})
+})
+// optional parameters (express v5 '?' not avilable)
+app.get('/posts/:year/:month', (req, res) => {
+    const {year, month} = req.params
+    res.json({year, month : month || 'all'})
+})
+
+
+
+
+
+
 app.listen(port, () => {
   console.log(`Server is listening on port http://localhost:${port}`)
 })
