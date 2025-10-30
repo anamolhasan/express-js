@@ -26,13 +26,13 @@ app.delete('/comments/:id', (req, res) => {
 
 // request object
 app.get('/example', (req, res) => {
-  console.log(req.params)
-  console.log(req.query)
+  console.log(req.params)  // /:id = {id}
+  console.log(req.query)  // /example?search=mobile  = {search:mobile}
   console.log(req.body)
   console.log(req.headers)
-  console.log(req.method)
-  console.log(req.url)
-  console.log(req.path)
+  console.log(req.method)  //get
+  console.log(req.url) // /example
+  console.log(req.path) //  /example
   console.log(req.protocol)
   console.log(req.ip)
   console.log(req.cookies)
