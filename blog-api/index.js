@@ -7,6 +7,8 @@ const port = process.env.PORT || 3000
 
 // default middleware
 app.use(express.json())
+app.use(express.urlencoded({extended:true}))
+app.use(express.static('src/public'))
 
 // use the custom middleware globally
 app.use(activityLogger)
