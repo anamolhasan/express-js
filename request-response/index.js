@@ -17,7 +17,30 @@ app.get('/example', (req, res) => {
   console.log(req.cookies)
 
 
+//   send different types
+
+// Send text
   res.send('Hello World!-')
+//   Send JSON
+  res.json({message:'Hello World!-'})
+//   send with status code
+  res.status(200).json({message:'Hello World!-'})
+//   set header
+  res.set('X-Custom-Header', 'value')
+  res.header('Content-Type', "application/json")
+//   Redirect
+  res.redirect('/login')
+  res.redirect(301, 'new-url')
+//   send file
+  res.sendFile(path.join(__dirname, 'public', 'index.html'))
+//   download file
+  res.download('/path/to/file.pdf')
+//   set cookies
+  res.cookie('name', 'value', {maxAge:900000, httpOnly: true})
+//   clear cookies
+  res.clearCookie('name')
+//   end response
+res.end()
 })
 
 
