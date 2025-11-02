@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const port = process.env.PORT || 3000
+const path = require('path')
 
 
 // request object
@@ -56,6 +57,15 @@ app.get('/api/user', (req, res) => {
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
+})
+
+app.get('/html', (req, res) => {
+  res.send('<h1>This is a HTML file</h1>')
+})
+
+app.get('/file', (req, res)=> {
+  const filePath = path.join(process.cwd(), 'public', 'example.html')
+  res.sendFile(filePath)
 })
 
 
