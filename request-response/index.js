@@ -44,6 +44,16 @@ res.end()
 })
 
 
+// sending response
+app.get('/api/user', (req, res) => {
+  const user = {
+    id:1,
+    name:'Anam',
+  }
+  res.status(200).send(user)
+})
+
+
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
