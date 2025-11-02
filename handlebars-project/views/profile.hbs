@@ -1,0 +1,20 @@
+{{#> layout}}
+<h1>User Profile</h1>
+<p>Name: {{Anam}}</p>
+<p>{{email}}</p>
+
+    {{#if isAdmin}}
+      <p>status: <strong>Admin</strong></p>
+    {{else}}
+      <p>status: <strong>Regular User</strong></p>
+    {{/if}}
+
+<h2>Hobbies</h2>
+<ul>
+    {{#each hobbies}}
+    <li>{{this}}</li>
+    {{/each}}
+</ul>
+
+
+ {{/layout}}
