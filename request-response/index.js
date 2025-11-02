@@ -68,6 +68,22 @@ app.get('/file', (req, res)=> {
   res.sendFile(filePath)
 })
 
+// set headers
+app.get('/headers',(req, res) => {
+  res.set('Custom-Header-1', 'This is a custom header')\
+  res.send('Header set correctly!')
+})
+
+// set cookies
+app.get('set-cookies', (req, res) => {
+  res.cookie('token', 'anam', {
+    httpOnly:true, 
+    expires: new Date(Date.new()+ 90000),
+    secure: true
+  })
+  res.send('Cookie set successfully!')
+})
+
 
 app.listen(port, () => {
   console.log(`Server is listening on port http://localhost:${port}`)
