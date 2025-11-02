@@ -2,7 +2,11 @@ const express = require('express')
 const app = express()
 const port = process.env.PORT || 3000
 const path = require('path')
+const cookieParser = require('cookie-parser')
 
+
+// middleware
+app.use(cookieParser())
 
 // request object
 app.get('/example', (req, res) => {
@@ -70,18 +74,33 @@ app.get('/file', (req, res)=> {
 
 // set headers
 app.get('/headers',(req, res) => {
-  res.set('Custom-Header-1', 'This is a custom header')\
+  res.set('Custom-Header-1', 'This is a custom header')
   res.send('Header set correctly!')
 })
 
 // set cookies
 app.get('set-cookies', (req, res) => {
-  res.cookie('token', 'anam', {
+  const token = 'adsjfojerijf429fmse94fs'
+  res.cookie('token', token, {
     httpOnly:true, 
     expires: new Date(Date.new()+ 90000),
     secure: true
   })
   res.send('Cookie set successfully!')
+})
+// get cookies
+app.get('/dashboard', (req, res)=>{
+  const token = req.cookies.token
+  console.log(token)
+  if(!token){
+    return res.send('You are not authenticated!')
+  }
+  res.send('Welcome to dashboard')
+})
+// clear-cookies
+app.get('/clear-cookies', (req, res) => {
+  res.clearCookie('token')
+  res.send('Cookies cleared successfully!')
 })
 
 
