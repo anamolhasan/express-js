@@ -15,9 +15,10 @@ const upload = multer({storage})
 
 // middleware
 app.use(express.static('public'))
+app.use('/uploads', express.static('uploads'))
 
 
-app.post('/upload',upload.single('image'), (req, res) => {
+app.post('/uploads',upload.single('image'), (req, res) => {
     if(!req.file) return res.status(400).json({error: "File not found"})
 
         res.status(200).json({
@@ -27,7 +28,7 @@ app.post('/upload',upload.single('image'), (req, res) => {
 })
 
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  res.sendFile(process.cwd() + '/public/index.html')
 })
 
 
